@@ -1,6 +1,6 @@
 import { useRef, useImperativeHandle, forwardRef } from "react";
 import coverImg from "../assets/cover.jpg";
-import ScratchCard, { CUSTOM_BRUSH_PRESET } from "react-scratchcard-v2";
+import ScratchCard, { CUSTOM_BRUSH_PRESET } from "react-scratchcard-v4";
 
 export interface ScratchCardProps {
   reward: string;
