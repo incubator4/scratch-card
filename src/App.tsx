@@ -11,6 +11,10 @@ const shuffle = (arr: Array<string>): Array<string> => {
   return arr.sort(() => Math.random() - 0.5);
 };
 
+const deepClone = <T extends object>(obj: T): T => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
 const defaultReward = [
   { name: "🍎", value: 1 },
   { name: "🍌", value: 2 },
@@ -20,9 +24,7 @@ const defaultReward = [
 ];
 
 function App() {
-  const [rewards, setRewards] = useState(
-    JSON.parse(JSON.stringify(defaultReward))
-  );
+  const [rewards, setRewards] = useState(deepClone(defaultReward));
 
   const [rewardPool, setRewardPool] = useState<Array<string>>([]);
   const rewardRefs = useRef<ScratchCardRef[]>([]);
@@ -41,7 +43,7 @@ function App() {
     });
 
     setRewardPool([]);
-    setRewards(JSON.parse(JSON.stringify(defaultReward)));
+    setRewards(deepClone(defaultReward));
   };
 
   return (
