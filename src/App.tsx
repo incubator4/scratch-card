@@ -47,7 +47,7 @@ function App() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex m-4">
       <div className="w-80">
         <Card className="justify-center items-center p-6">
           <h1 className="text-4xl">刮刮乐</h1>
@@ -75,11 +75,12 @@ function App() {
         </Card>
       </div>
       <div className="flex-grow bg-blue-50 m-6 shadow-sm border border-slate-200">
-        <div className="m-4 space-x-4 space-y-4">
+        <div className="m-4 space-x-4 space-y-1">
           {rewardPool.map((reward, index) => (
             <ScratchCard
               className="inline-block shadow-sm border-slate-200 border rounded-lg"
               key={index}
+              finishPercent={60}
               reward={reward}
               ref={(element) => {
                 if (element) {
