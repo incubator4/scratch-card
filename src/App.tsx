@@ -75,10 +75,10 @@ function App() {
         </Card>
       </div>
       <div className="flex-grow bg-blue-50 m-6 shadow-sm border border-slate-200">
-        <div className="m-4 space-x-4 space-y-1">
+        <div className="m-4">
           {rewardPool.map((reward, index) => (
             <ScratchCard
-              className="inline-block shadow-sm border-slate-200 border rounded-lg"
+              className="inline-block m-2 mx-3 shadow-sm border-slate-200 border rounded-lg"
               key={index}
               finishPercent={60}
               reward={reward}
