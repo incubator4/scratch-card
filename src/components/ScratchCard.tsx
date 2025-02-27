@@ -37,7 +37,7 @@ const Card = forwardRef<ScratchCardRef, ScratchCardProps>((props, ref) => {
     }
   };
 
-  useEffect(() => initCanvas, []);
+  useEffect(initCanvas, [props.reward, props.finishPercent]);
 
   const handleMouseMove = (e: MouseEvent<HTMLCanvasElement>) => {
     if (isMouseDown && _ref.current) {
@@ -76,10 +76,8 @@ const Card = forwardRef<ScratchCardRef, ScratchCardProps>((props, ref) => {
     }
   };
 
-  const onReset = () => initCanvas();
-
   useImperativeHandle(ref, () => ({
-    reset: onReset,
+    reset: initCanvas,
   }));
 
   return (
@@ -92,8 +90,12 @@ const Card = forwardRef<ScratchCardRef, ScratchCardProps>((props, ref) => {
         className="absolute top-0 left-0"
         width={160}
         height={80}
-        onMouseDown={() => setIsMouseDown(true)}
-        onMouseUp={() => setIsMouseDown(false)}
+        onMouseDown={() => {
+          setIsMouseDown(true);
+        }}
+        onMouseUp={() => {
+          setIsMouseDown(false);
+        }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsMouseDown(false)}
         // finishPercent={80}
