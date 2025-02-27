@@ -5,6 +5,7 @@ import {
   useState,
   useEffect,
   MouseEvent,
+  TouchEvent,
 } from "react";
 import "./ScratchCard.css";
 
@@ -39,14 +40,27 @@ const Card = forwardRef<ScratchCardRef, ScratchCardProps>((props, ref) => {
 
   useEffect(initCanvas, [props.reward, props.finishPercent]);
 
-  const handleMouseMove = (e: MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = (
+    e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>
+  ) => {
     if (isMouseDown && _ref.current) {
       const ctx = _ref.current.getContext("2d");
       if (ctx) {
         ctx.globalCompositeOperation = "destination-out";
-        const rect = _ref.current.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+
+        let x, y;
+        if ("clientX" in e) {
+          // 鼠标事件
+          const rect = _ref.current.getBoundingClientRect();
+          x = e.clientX - rect.left;
+          y = e.clientY - rect.top;
+        } else {
+          // 触摸事件
+          const rect = _ref.current.getBoundingClientRect();
+          x = e.touches[0].clientX - rect.left;
+          y = e.touches[0].clientY - rect.top;
+        }
+
         ctx.beginPath();
         ctx.arc(x, y, 15, 0, Math.PI * 2);
         ctx.fill();
@@ -98,6 +112,13 @@ const Card = forwardRef<ScratchCardRef, ScratchCardProps>((props, ref) => {
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsMouseDown(false)}
+        onTouchStart={() => {
+          setIsMouseDown(true);
+        }}
+        onTouchEnd={() => {
+          setIsMouseDown(false);
+        }}
+        onTouchMove={handleMouseMove}
         // finishPercent={80}
         // onComplete={() => console.log("complete")}
       />
