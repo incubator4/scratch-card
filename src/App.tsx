@@ -6,6 +6,7 @@ import Card from "./components/Card";
 import Button from "./components/Button";
 import "./App.css";
 import Reward from "./components/Reward";
+import birthImg from "./assets/birth.png";
 
 const shuffle = (arr: Array<string>): Array<string> => {
   return arr.sort(() => Math.random() - 0.5);
@@ -99,6 +100,13 @@ function App() {
               }}
             />
           ))}
+          <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+            <img
+              className="object-cover object-center w-full -translate-y-20"
+              src={birthImg}
+              alt="nature image"
+            />
+          </div>
         </div>
       </div>
     </div>
