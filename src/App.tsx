@@ -84,25 +84,27 @@ function App() {
       </div>
       <div className="flex-grow bg-blue-50 m-6 shadow-sm border border-slate-200">
         <div className="m-2">
-          {rewardPool.map((reward, index) => (
-            <ScratchCard
-              className="inline-block m-2 mx-3 shadow-sm border-slate-200 border rounded-lg"
-              key={index}
-              finishPercent={60}
-              onComplete={() => {
-                alert(`恭喜你获得了奖品: ${reward}`);
-              }}
-              reward={reward}
-              ref={(element) => {
-                if (element) {
-                  rewardRefs.current.push(element);
-                }
-              }}
-            />
-          ))}
+          <div>
+            {rewardPool.map((reward, index) => (
+              <ScratchCard
+                className="inline-block z-10 m-2 mx-3 shadow-sm border-slate-200 border rounded-lg"
+                key={index}
+                finishPercent={60}
+                onComplete={() => {
+                  alert(`恭喜你获得了奖品: ${reward}`);
+                }}
+                reward={reward}
+                ref={(element) => {
+                  if (element) {
+                    rewardRefs.current.push(element);
+                  }
+                }}
+              />
+            ))}
+          </div>
           <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
             <img
-              className="object-cover object-center w-full -translate-y-20"
+              className="no-select-drag object-cover object-center w-full -translate-y-20"
               src={birthImg}
               alt="nature image"
             />
