@@ -16,6 +16,7 @@ const deepClone = <T extends object>(obj: T): T => {
 };
 
 const defaultReward = [
+  { name: "专属音声", value: 1 },
   { name: "B站大会员", value: 1 },
   { name: "¥8.8", value: 1 },
   { name: "¥18.8", value: 1 },
